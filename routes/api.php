@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\v1\AuthController;
+use App\Http\Controllers\API\v1\TransactionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,5 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function (){
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::post('/refresh-token', [AuthController::class, 'refreshToken'])->name('auth.refresh-token');
 
-
-
+    Route::resource('credit', TransactionController::class);
 });
