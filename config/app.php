@@ -111,6 +111,10 @@ return [
 
     'faker_locale' => 'en_US',
 
+    // added a wage for every transaction
+
+    'wage_amount' => env('WAGE_AMOUNT', -500),
+
     /*
     |--------------------------------------------------------------------------
     | Encryption Key

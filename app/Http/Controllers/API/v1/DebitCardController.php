@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DebitCardRequest;
 use App\Http\Resources\DebitCardResource;
 use App\Models\DebitCard;
 
@@ -14,7 +13,7 @@ class DebitCardController extends Controller
         return DebitCardResource::collection(DebitCard::all());
     }
 
-    public function store(DebitCardRequest $request)
+    public function store(DebitCardResource $request)
     {
         return new DebitCardResource(DebitCard::create($request->validated()));
     }
@@ -24,7 +23,7 @@ class DebitCardController extends Controller
         return new DebitCardResource($userBankCredit);
     }
 
-    public function update(DebitCardRequest $request, DebitCard $userBankCredit)
+    public function update(DebitCardResource $request, DebitCard $userBankCredit)
     {
         $userBankCredit->update($request->validated());
 

@@ -46,8 +46,6 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-
-
     public function debitCards(): HasMany
     {
         return $this->hasMany(DebitCard::class);
@@ -56,5 +54,15 @@ class User extends Authenticatable
     public function transactions(): HasManyThrough
     {
         return $this->hasManyThrough(Transaction::class, DebitCard::class);
+    }
+
+    public function senderTransfers(): HasManyThrough
+    {
+        return $this->hasManyThrough(Transfer::class, DebitCard::class);
+    }
+
+    public function receiverTransfers(): HasManyThrough
+    {
+        return $this->hasManyThrough(Transfer::class, DebitCard::class);
     }
 }

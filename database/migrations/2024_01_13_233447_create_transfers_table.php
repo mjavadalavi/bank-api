@@ -7,17 +7,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration {
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('transfers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('debit_card_id')->constrained('debit_cards');
+            $table->foreignId('sender_debit_card_id')->constrained('debit_cards');
+            $table->foreignId('receiver_debit_card_id')->constrained('debit_cards');
             $table->decimal('amount', 10, 2);
-            $table->boolean('verified')->default(false);
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('transfers');
     }
 };
