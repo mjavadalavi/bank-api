@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/v1/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/v1/register', [AuthController::class, 'register'])->name('auth.register');
+Route::post('/v1/login', [AuthController::class, 'login'])->name('auth.login');
 
 
 Route::middleware('auth:sanctum')->prefix('v1')->group(function (){

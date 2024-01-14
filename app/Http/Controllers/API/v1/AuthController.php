@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers\API\v1;
 
-use App\Http\Controllers\Controller;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\UserRequest;
+use App\Models\User;
 
 
 class AuthController extends Controller
 {
-    public function register( Request $request){
-        $data = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|unique:users',
-            'password' => 'required|confirmed',
-        ]);
+    public function register(UserRequest $request){
 
-        $user = User::create($data);
+        $user = User::create($request->all());
         $token = $user->createToken('user-api-token')->plainTextToken;
 
         return response()->json([
@@ -26,14 +23,10 @@ class AuthController extends Controller
         ]);
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
-        $data = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
 
-        if (Auth::attempt($data)) {
+        if (Auth::attempt($request->all())) {
             $user = Auth::user();
             $token = $user->createToken('user-api-token')->plainTextToken;
             return response()->json([
