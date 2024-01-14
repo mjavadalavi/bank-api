@@ -113,7 +113,7 @@ return [
 
     // added a wage for every transaction
 
-    'wage_amount' => env('WAGE_AMOUNT', -500),
+    'wage_amount' => env('WAGE_AMOUNT', 500),
 
     /*
     |--------------------------------------------------------------------------

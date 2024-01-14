@@ -9,17 +9,14 @@ class TransactionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'debit_card_id' => 'required|exists:debit_cards,id',
+            'card_number' => 'required|exists:debit_cards,card_number',
             'amount' => [
                 'required',
                 'numeric',
                 'between:1000,500000000',
                 function ($attribute, $value, $fail) {
-                    $debitCard = auth()->user()->debitCards()->findOrFail(request('debit_card_id'));
-                    $currentBalance = $debitCard->transactions()->sum('amount');
-                    $proposedBalance = $currentBalance + $value + 500;
-
-                    if ($proposedBalance > 500000000) {
+                    $debitCard = auth()->user()->debitCards()->where('card_number', request('card_number'))->firstOrFail();
+                    if (($debitCard->balance + config('app.wage_amount')) < $value) {
                         $fail('Insufficient balance for this transaction.');
                     }
                 },

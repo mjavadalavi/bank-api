@@ -21,7 +21,7 @@ class CheckTransactionBalance
 
         if ($event->transaction->amount < 0){
             $debitCard = $event->transaction->debitCard()->create([
-                'amount' => config('app.wage_amount')
+                'amount' => (config('app.wage_amount') * -1)
             ]);
 
             $debitCard->save();

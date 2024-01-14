@@ -13,14 +13,16 @@ class TransactionFactory extends Factory
     public function definition()
     {
         return [
-            'from_debit_card_id' => $this->faker->randomNumber(),
-            'to_debit_card_id' => $this->faker->randomNumber(),
-            'from_user_balance' => $this->faker->randomFloat(),
-            'to_user_balance' => $this->faker->randomFloat(),
-            'amount' => $this->faker->randomFloat(),
-            'verified' => rand(0, 1),
+            'debit_card_id' => $this->faker->randomNumber(),
+            'amount' => $this->faker->randomFloat(2, 1000, 50000000),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ];
+    }
+
+
+    public function withTransactions()
+    {
+        return $this->has(Transaction::factory()->count(5), 'transactions');
     }
 }

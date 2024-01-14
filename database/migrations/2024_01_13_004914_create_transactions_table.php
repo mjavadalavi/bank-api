@@ -11,7 +11,6 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('debit_card_id')->constrained('debit_cards');
             $table->decimal('amount', 10, 2);
-            $table->boolean('verified')->default(false);
             $table->timestamps();
         });
     }

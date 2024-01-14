@@ -16,11 +16,13 @@ class TransactionServices
             DB::beginTransaction();
 
             $transaction = new Transaction([
-                'amount' => $amount,
-                'verified' => true,
+                'amount' => $amount
             ]);
-
             $debitCard->transactions()->save($transaction);
+
+
+            $debitCard->balance += $amount;
+            $debitCard->save();
 
             event(new TransactionMade($transaction));
 
@@ -28,7 +30,7 @@ class TransactionServices
             return ['message' => 'Transaction initiated successfully', "status" => true];
         } catch (Exception $e) {
             DB::rollBack();
-            return ['message' => 'Transaction have some error: '. $e->getMessage(), "status" => false];
+            return ['message' => 'Transaction have an error message: '. $e->getMessage(), "status" => false];
         }
     }
 }

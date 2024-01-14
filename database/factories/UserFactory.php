@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\DebitCard;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -42,5 +43,17 @@ class UserFactory extends Factory
         return $this->state(fn (array $attributes) => [
             'email_verified_at' => null,
         ]);
+    }
+
+    public function withDebitCards()
+    {
+        return $this->has(DebitCard::factory()->count(3), 'debitCards');
+    }
+
+
+
+    public function withDebitCardsAndTransactions()
+    {
+        return $this->has(DebitCard::factory()->withTransactions()->count(3), 'debitCards');
     }
 }

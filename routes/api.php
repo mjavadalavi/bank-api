@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\v1\AuthController;
 use App\Http\Controllers\API\v1\TransactionController;
+use App\Http\Controllers\API\v1\TransferController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
+Route::get('/v1/login', [AuthController::class, 'login'])->name('auth.login');
 
 
 Route::middleware('auth:sanctum')->prefix('v1')->group(function (){
@@ -23,5 +24,6 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function (){
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::post('/refresh-token', [AuthController::class, 'refreshToken'])->name('auth.refresh-token');
 
-    Route::resource('credit', TransactionController::class);
+    Route::resource('transaction', TransactionController::class)->only(['index', 'store']);
+    Route::resource('transfer', TransferController::class)->only(['store']);
 });
