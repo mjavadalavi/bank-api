@@ -15,10 +15,4 @@ class Transaction extends Model
         'amount'
     ];
 
-
-
-    public function debitCard(): BelongsTo
-    {
-        return $this->belongsTo(DebitCard::class);
-    }
 }

@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\DebitCard;
+use App\Models\BankAccount;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
@@ -45,15 +45,23 @@ class UserFactory extends Factory
         ]);
     }
 
-    public function withDebitCards()
+    public function withBankAccount()
     {
-        return $this->has(DebitCard::factory()->count(3), 'debitCards');
+        return $this->has(BankAccount::factory()->count(3), 'bank_accounts');
     }
 
 
 
-    public function withDebitCardsAndTransactions()
+
+    // Nested factory for bank accounts
+    public function withBankAccountsAndCreditsAndTransactions($bankAccountsCount = 3, $debitsCount = 5, $transactionsCount = 10)
     {
-        return $this->has(DebitCard::factory()->withTransactions()->count(3), 'debitCards');
+        return $this->afterCreating(function (User $user) use ($bankAccountsCount, $debitsCount, $transactionsCount) {
+            BankAccount::factory()
+                ->count($bankAccountsCount)
+                ->forUser($user)
+                ->withCreditsAndTransactions($debitsCount, $transactionsCount)
+                ->create();
+        });
     }
 }

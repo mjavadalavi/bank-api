@@ -16,9 +16,4 @@ class UserRequest extends FormRequest
             'password' => 'required',
         ];
     }
-
-    public function authorize(): bool
-    {
-        return false;
-    }
 }

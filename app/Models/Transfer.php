@@ -15,16 +15,4 @@ class Transfer extends Model
         'receiver_debit_card_id',
         'amount',
     ];
-
-
-    public function senderDebitCard(): BelongsTo
-    {
-        return $this->belongsTo(DebitCard::class, 'sender_debit_card_id');
-    }
-
-    public function receiverDebitCard(): BelongsTo
-    {
-        return $this->belongsTo(DebitCard::class, 'receiver_debit_card_id');
-    }
-
 }

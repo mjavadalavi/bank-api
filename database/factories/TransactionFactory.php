@@ -25,4 +25,14 @@ class TransactionFactory extends Factory
     {
         return $this->has(Transaction::factory()->count(5), 'transactions');
     }
+
+
+    public function forDebitCard($debitCard)
+    {
+        return $this->state(function (array $attributes) use ($debitCard) {
+            return [
+                'debit_card_id' => $debitCard->id,
+            ];
+        });
+    }
 }

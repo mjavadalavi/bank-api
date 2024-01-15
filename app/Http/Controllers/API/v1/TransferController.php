@@ -22,6 +22,13 @@ class TransferController extends Controller
             $senderDebitCard = auth()->user()->debitCards()->where('card_number', $request->input('sender_card_number'))->firstOrFail();
             $receiverDebitCard = DebitCard::where('card_number', $request->input('receiver_card_number'))->firstOrFail();
 
+            // Check if sender has sufficient balance
+            $currentBalance = $senderDebitCard->transactions->sum('amount') + config('app.wage_amount');
+
+            if ($currentBalance < $request->input('amount')) {
+                return response()->json(['error' => 'Insufficient balance for this transfer.'], 422);
+            }
+
             // Perform the transfer
             $transfer = Transfer::create([
                 'sender_debit_card_id' => $senderDebitCard->id,
@@ -40,6 +47,7 @@ class TransferController extends Controller
 
             if (!$receiverTransactionResponse['status'])
                 throw new TransferException("receiver: ".$receiverTransactionResponse['message']);
+
 
             // Commit the transaction if all steps are successful
             DB::commit();

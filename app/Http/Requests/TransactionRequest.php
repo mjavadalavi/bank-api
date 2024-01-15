@@ -10,21 +10,11 @@ class TransactionRequest extends FormRequest
     {
         return [
             'card_number' => 'required|exists:debit_cards,card_number',
-            'amount' => [
-                'required',
-                'numeric',
-                'between:1000,500000000',
-                function ($attribute, $value, $fail) {
-                    $debitCard = auth()->user()->debitCards()->where('card_number', request('card_number'))->firstOrFail();
-                    if (($debitCard->balance + config('app.wage_amount')) < $value) {
-                        $fail('Insufficient balance for this transaction.');
-                    }
-                },
-            ],
+            'amount' => 'required|numeric|between:-500000000,500000000'
         ];
     }
 
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
