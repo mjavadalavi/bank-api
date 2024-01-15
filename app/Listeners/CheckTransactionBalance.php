@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Events\TransactionMade;
+use App\Models\Transaction;
 
 class CheckTransactionBalance
 {
@@ -18,13 +19,12 @@ class CheckTransactionBalance
      */
     public function handle(TransactionMade $event): void
     {
-
         if ($event->transaction->amount < 0){
-            $debitCard = $event->transaction->debitCard()->create([
-                'amount' => (config('app.wage_amount') * -1)
-            ]);
-
-            $debitCard->save();
+            Transaction::create([
+                    'debit_card_id' => $event->transaction->debit_card_id,
+                    'amount' => (config('app.wage_amount') * -1)
+                ]
+            );
         }
     }
 }

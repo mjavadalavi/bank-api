@@ -12,13 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
         User::factory()
             ->count(5)
-            ->withDebitCardsAndTransactions()
+            ->withBankAccountsAndCreditsAndTransactions(2, 3, 5)
             ->create();
-
-
-
     }
 }

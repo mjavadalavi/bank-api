@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/v1/register', [AuthController::class, 'register'])->name('auth.register');
-Route::post('/v1/login', [AuthController::class, 'login'])->name('auth.login');
+Route::post('/v1/login', [AuthController::class, 'login'])->name('login');
 
 
 Route::middleware('auth:sanctum')->prefix('v1')->group(function (){
@@ -25,6 +25,9 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function (){
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
     Route::post('/refresh-token', [AuthController::class, 'refreshToken'])->name('auth.refresh-token');
 
-    Route::resource('transaction', TransactionController::class)->only(['index', 'store']);
-    Route::resource('transfer', TransferController::class)->only(['store']);
+
+    Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction.index');
+    Route::post('/transaction', [TransactionController::class, 'store'])->name('transaction.store');
+
+    Route::post('/transfer', [TransferController::class, 'store'])->name('transfer.store');
 });
