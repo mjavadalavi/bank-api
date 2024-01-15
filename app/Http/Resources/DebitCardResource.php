@@ -9,12 +9,12 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /** @mixin DebitCard */
 class DebitCardResource extends JsonResource
 {
-    public function toArray(Request $request)
+    public function toArray(Request $request): array
     {
         return [
             'id'=> $this->id,
-            'user_id' => $this->user_id,
-            'credit_number'=> $this->credit_number,
+            'user_id' => $this->bank_account_id,
+            'credit_number'=> $this->card_number,
             'expired_at' => $this->expired_at,
             'cvv2' => $this->cvv2,
             'balance' => $this->balance,

@@ -14,9 +14,8 @@ class DebitCardFactory extends Factory
     public function definition()
     {
         return [
-            'user_id'=> $this->faker->randomNumber(),
+            'bank_account_id'=> $this->faker->randomNumber(),
             'card_number' => $this->faker->unique()->creditCardNumber,
-            'balance' => $this->faker->randomFloat(0, 100, 50000000),
             'cvv2' => $this->faker->randomFloat(0, 100, 9999),
             'expired_at' => now()->addYears(2),
             'created_at' => Carbon::now(),
@@ -28,6 +27,26 @@ class DebitCardFactory extends Factory
     public function withTransactions()
     {
         return $this->has(Transaction::factory()->count(5), 'transactions');
+    }
+
+
+    public function forUser($user)
+    {
+        return $this->state(function (array $attributes) use ($user) {
+            return [
+                'user_id' => $user->id,
+            ];
+        });
+    }
+
+
+    public function forBankAccount($bankAccount)
+    {
+        return $this->state(function (array $attributes) use ($bankAccount) {
+            return [
+                'bank_account_id' => $bankAccount->id,
+            ];
+        });
     }
 
 }

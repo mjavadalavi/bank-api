@@ -9,11 +9,10 @@ return new class extends Migration {
     {
         Schema::create('debit_cards', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('bank_account_id')->constrained();
             $table->string('card_number')->unique();
             $table->integer('cvv2')->default(rand(100, 9999));
             $table->dateTime('expired_at')->default(now()->addYears(2));;
-            $table->decimal('balance', 10, 2);
             $table->timestamps();
         });
     }

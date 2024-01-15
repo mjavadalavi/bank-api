@@ -14,15 +14,10 @@ class TransactionServices
     {
         try {
             DB::beginTransaction();
-
             $transaction = new Transaction([
                 'amount' => $amount
             ]);
             $debitCard->transactions()->save($transaction);
-
-
-            $debitCard->balance += $amount;
-            $debitCard->save();
 
             event(new TransactionMade($transaction));
 

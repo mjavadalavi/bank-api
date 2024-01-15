@@ -46,23 +46,21 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function debitCards(): HasMany
+    public function bankAccounts(): HasMany
     {
-        return $this->hasMany(DebitCard::class);
+        return $this->hasMany(BankAccount::class);
+    }
+
+    public function debitCards(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            DebitCard::class,
+            BankAccount::class
+        );
     }
 
     public function transactions(): HasManyThrough
     {
         return $this->hasManyThrough(Transaction::class, DebitCard::class);
-    }
-
-    public function senderTransfers(): HasManyThrough
-    {
-        return $this->hasManyThrough(Transfer::class, DebitCard::class);
-    }
-
-    public function receiverTransfers(): HasManyThrough
-    {
-        return $this->hasManyThrough(Transfer::class, DebitCard::class);
     }
 }

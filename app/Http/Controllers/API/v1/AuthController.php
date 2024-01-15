@@ -17,9 +17,16 @@ class AuthController extends Controller
         $user = User::create($request->all());
         $token = $user->createToken('user-api-token')->plainTextToken;
 
+        $user->bankAccounts()->create([
+            'account_number'=> crc32(uniqid())
+        ]);
+
         return response()->json([
             'token' => $token,
-            'user' => $user,
+            'user' => [
+                $user,
+                'bankAccounts' => $user->bankAccounts()
+            ],
         ]);
     }
 
@@ -42,7 +49,7 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        auth()->user()->currentAccessToken()->delete();
 
         return response()->json([
             'message' => 'Logged out successfully'
@@ -51,7 +58,7 @@ class AuthController extends Controller
 
     public function refreshToken(Request $request)
     {
-        $token = $request->user()->createToken('user-api-token')->plainTextToken;
+        $token = auth()->user()->createToken('user-api-token')->plainTextToken;
 
         return response()->json([
             'token' => $token,

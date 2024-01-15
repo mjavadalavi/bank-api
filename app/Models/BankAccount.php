@@ -7,25 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class DebitCard extends Model
+class BankAccount extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'bank_account_id',
-        'card_number',
-        'expired_at',
-        'cvv2',
-        'balance',
+        'account_number',
+        'user_id',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function transactions(): HasMany
-    {
-        return $this->hasMany(Transaction::class);
     }
 }
