@@ -1,0 +1,646 @@
+{
+	"info": {
+		"_postman_id": "74842e99-6fe6-42ae-be42-49a10ad3add5",
+		"name": "Bank-API documentation",
+		"description": "# 📄 Get started here\n\nThis is a document for sample bank api's\n\n## Authentication\n\nthere is an bearer token for auth users and access to my servies.\n\n### Authentication error response\n\nIf an API key is missing, malformed, or invalid, you will receive an HTTP 401 Unauthorized response code.\n\n### 422 response\n\nAn HTTP 422 response from our service response error for request data.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22479443",
+		"_collection_link": "https://grey-space-199240.postman.co/workspace/9ab102a8-097c-4a0e-8400-e82e8747e7b3/collection/22479443-74842e99-6fe6-42ae-be42-49a10ad3add5?action=share&source=collection_link&creator=22479443"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "MJavad",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Alavi",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "smja1376@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "+989011487821",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"register"
+							]
+						},
+						"description": "Gets information about the authenticated user."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"1|beztfbKGJOVbMEcw9nUFac8CrwUVjtqvR2pZdgEI78700887\",\n    \"user\": {\n        \"first_name\": \"MJavad\",\n        \"last_name\": \"Alavi\",\n        \"email\": \"smja1376@gmail.com\",\n        \"phone\": \"+989011487821\",\n        \"updated_at\": \"2024-01-14T18:28:56.000000Z\",\n        \"created_at\": \"2024-01-14T18:28:56.000000Z\",\n        \"id\": 6\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "rkuhlman@example.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						},
+						"description": "Gets information about the authenticated user."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"2|Kx1rW8PWSEvguPvtWGFRMS7SaUOhRJ6ux3k9TKCafd6c3fbd\",\n    \"user\": {\n        \"id\": 6,\n        \"first_name\": \"MJavad\",\n        \"last_name\": \"Alavi\",\n        \"email\": \"smja1376@gmail.com\",\n        \"phone\": \"+989011487821\",\n        \"created_at\": \"2024-01-14T18:28:56.000000Z\",\n        \"updated_at\": \"2024-01-14T18:28:56.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"logout"
+							]
+						},
+						"description": "Gets information about the authenticated user."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/logout",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Logged out successfully\"\n}"
+						}
+					]
+				},
+				{
+					"name": "refresh-token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/refresh-token",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"refresh-token"
+							]
+						},
+						"description": "Gets information about the authenticated user."
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/refresh-token",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"refresh-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"3|DppvygqEEsbSwvMkKNUX6RJwvcEKFYNz4Rdp2uwwe3b0fdbf\",\n    \"user\": {\n        \"id\": 6,\n        \"first_name\": \"MJavad\",\n        \"last_name\": \"Alavi\",\n        \"email\": \"smja1376@gmail.com\",\n        \"phone\": \"+989011487821\",\n        \"created_at\": \"2024-01-14T18:28:56.000000Z\",\n        \"updated_at\": \"2024-01-14T18:28:56.000000Z\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "The `/register` endpoints let you create user bank account.\n\nThe `/login` endpoints let you authenticated user.\n\nThe `/logout` endpoints let you logout user.\n\nThe `/refresh-token` endpoints let you refresh token authenticated user."
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Create a transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "card_number",
+									"value": "5504743084940456",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "-10000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "card_number",
+											"value": "5504743084940456",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "-10000",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Transaction initiated successfully\",\n    \"status\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Get last transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transaction",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transaction"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/transaction",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transaction"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"users\": [\n        {\n            \"id\": 5,\n            \"first_name\": \"Caden\",\n            \"last_name\": \"Sauer\",\n            \"email\": \"volkman.sigrid@example.com\",\n            \"phone\": \"1-551-239-9447\",\n            \"created_at\": \"2024-01-15T10:25:42.000000Z\",\n            \"updated_at\": \"2024-01-15T10:25:42.000000Z\",\n            \"transaction_count\": 2\n        },\n        {\n            \"id\": 5,\n            \"first_name\": \"Caden\",\n            \"last_name\": \"Sauer\",\n            \"email\": \"volkman.sigrid@example.com\",\n            \"phone\": \"1-551-239-9447\",\n            \"created_at\": \"2024-01-15T10:25:42.000000Z\",\n            \"updated_at\": \"2024-01-15T10:25:42.000000Z\",\n            \"transaction_count\": 2\n        },\n        {\n            \"id\": 5,\n            \"first_name\": \"Caden\",\n            \"last_name\": \"Sauer\",\n            \"email\": \"volkman.sigrid@example.com\",\n            \"phone\": \"1-551-239-9447\",\n            \"created_at\": \"2024-01-15T10:25:42.000000Z\",\n            \"updated_at\": \"2024-01-15T10:25:42.000000Z\",\n            \"transaction_count\": 2\n        }\n    ],\n    \"latestTransactions\": [\n        {\n            \"id\": 154,\n            \"debit_card_id\": 15,\n            \"amount\": \"-10000.00\",\n            \"created_at\": \"2024-01-15T13:49:02.000000Z\",\n            \"updated_at\": \"2024-01-15T13:49:02.000000Z\"\n        },\n        {\n            \"id\": 155,\n            \"debit_card_id\": 15,\n            \"amount\": \"-500.00\",\n            \"created_at\": \"2024-01-15T13:49:02.000000Z\",\n            \"updated_at\": \"2024-01-15T13:49:02.000000Z\"\n        },\n        {\n            \"id\": 153,\n            \"debit_card_id\": 8,\n            \"amount\": \"10000.00\",\n            \"created_at\": \"2024-01-15T13:27:36.000000Z\",\n            \"updated_at\": \"2024-01-15T13:27:36.000000Z\"\n        },\n        {\n            \"id\": 152,\n            \"debit_card_id\": 15,\n            \"amount\": \"-500.00\",\n            \"created_at\": \"2024-01-15T13:27:36.000000Z\",\n            \"updated_at\": \"2024-01-15T13:27:36.000000Z\"\n        },\n        {\n            \"id\": 151,\n            \"debit_card_id\": 15,\n            \"amount\": \"-10000.00\",\n            \"created_at\": \"2024-01-15T13:27:36.000000Z\",\n            \"updated_at\": \"2024-01-15T13:27:36.000000Z\"\n        },\n        {\n            \"id\": 2,\n            \"debit_card_id\": 1,\n            \"amount\": \"7603150.55\",\n            \"created_at\": \"2024-01-15T10:25:42.000000Z\",\n            \"updated_at\": \"2024-01-15T10:25:42.000000Z\"\n        },\n        {\n            \"id\": 3,\n            \"debit_card_id\": 1,\n            \"amount\": \"41386539.42\",\n            \"created_at\": \"2024-01-15T10:25:42.000000Z\",\n            \"updated_at\": \"2024-01-15T10:25:42.000000Z\"\n        },\n        {\n            \"id\": 5,\n            \"debit_card_id\": 1,\n            \"amount\": \"14779858.12\",\n            \"created_at\": \"2024-01-15T10:25:42.000000Z\",\n            \"updated_at\": \"2024-01-15T10:25:42.000000Z\"\n        },\n        {\n            \"id\": 6,\n            \"debit_card_id\": 2,\n            \"amount\": \"44455267.16\",\n            \"created_at\": \"2024-01-15T10:25:42.000000Z\",\n            \"updated_at\": \"2024-01-15T10:25:42.000000Z\"\n        },\n        {\n            \"id\": 8,\n            \"debit_card_id\": 2,\n            \"amount\": \"8147904.17\",\n            \"created_at\": \"2024-01-15T10:25:42.000000Z\",\n            \"updated_at\": \"2024-01-15T10:25:42.000000Z\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			],
+			"description": "The POST `/transaction` endpoints let you create a transaction for sub or add balance account\n\nThe GET `/transaction` endpoints let you get top 10 users have transactions in 10 mins ago and get 10 latest transactions."
+		},
+		{
+			"name": "Transfer",
+			"item": [
+				{
+					"name": "Create Transfer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "sender_card_number",
+									"value": "5504743084940456",
+									"type": "text"
+								},
+								{
+									"key": "receiver_card_number",
+									"value": "4556632665714",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "10000",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transfer",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transfer"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Successful Response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "sender_card_number",
+											"value": "5504743084940456",
+											"type": "text"
+										},
+										{
+											"key": "receiver_card_number",
+											"value": "4556632665714",
+											"type": "text"
+										},
+										{
+											"key": "amount",
+											"value": "10000",
+											"type": "text"
+										}
+									],
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transfer",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transfer"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"name": "Content-Type",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Transfer successful\"\n}"
+						}
+					]
+				}
+			],
+			"description": "The `/transfer` endpoints let you transfer balance from a debit card to another debit card."
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://127.0.0.1:8000/api/v1"
+		},
+		{
+			"key": "token",
+			"value": "2|Pm5joY8oTW4aVsHJfslwulP9xrkDsUBvPntEIxkE3c8875a3",
+			"type": "string"
+		}
+	]
+}
